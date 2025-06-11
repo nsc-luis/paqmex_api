@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36202.13 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PAQMEX_API", "PAQMEX_API.csproj", "{D68072B9-67CF-4F56-8C91-AF6CEBC1FD1B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D68072B9-67CF-4F56-8C91-AF6CEBC1FD1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D68072B9-67CF-4F56-8C91-AF6CEBC1FD1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D68072B9-67CF-4F56-8C91-AF6CEBC1FD1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D68072B9-67CF-4F56-8C91-AF6CEBC1FD1B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4235FE91-5EC6-4966-A660-66850D45DE93}
+	EndGlobalSection
+EndGlobal

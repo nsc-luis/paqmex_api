@@ -1,0 +1,7 @@
+.vs/
+bin/
+obj/
+Propierties/
+appsettings.json
+appsettings.Development.json
+Models/PAQUETERIAPQ/PaqueteriapqContext.cs
