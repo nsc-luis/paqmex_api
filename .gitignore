@@ -5,3 +5,6 @@ Propierties/
 appsettings.json
 appsettings.Development.json
 Models/PAQUETERIAPQ/PaqueteriapqContext.cs
+Models/PAQUETERIA/PaqueteriaContext.cs
+Models/ENTREGAS/ENTREGASContext.cs
+Models/JPG/JPGContext.cs

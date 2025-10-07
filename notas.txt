@@ -1,0 +1,4 @@
+// Scaffold-DbContext "server=[dnsalias],1433;user=[sa];password=[password];database=[DataBase]" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models\[DataBase] -UseDatabasenames
+
+// Cve_Cliente
+// PwdInternet

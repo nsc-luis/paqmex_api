@@ -1,6 +1,10 @@
 using Microsoft.EntityFrameworkCore;
 using PAQMEX_API;
+using PAQMEX_API.Models.ENTREGAS;
+using PAQMEX_API.Models.JPG;
 using PAQMEX_API.Models.PAQUETERIAPQ;
+using PAQMEX_API.Services.JPG;
+using PAQMEX_API.Services.PAQUETERIAPQ;
 using System;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,10 +14,19 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-
+builder.Services.AddScoped<IJPGService, JPGService>();
+builder.Services.AddScoped<IPAQUETERIAPQService, PAQUETERIAPQService>();
 builder.Services.AddDbContext<PaqueteriapqContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("PAQUETERIAPQ"));
+});
+builder.Services.AddDbContext<ENTREGASContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("ENTREGAS"));
+});
+builder.Services.AddDbContext<JPGContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("JPG"));
 });
 
 builder.Services.AddCors(options =>

@@ -1,53 +1,44 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using PAQMEX_API.Data.PAQUETERIAPQ;
-using PAQMEX_API.Models.PAQUETERIAPQ;
+using PAQMEX_API.Services.JPG;
+using PAQMEX_API.Services.PAQUETERIAPQ;
+using static PAQMEX_API.Services.PAQUETERIAPQ.IPAQUETERIAPQService;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace PAQMEX_API.Controllers.PAQUETERIAPQ
 {
     [Route("api/[controller]")]
+    //[Route("api/v1/guias/entregas/consulta")]
     [ApiController]
     public class TbGuiaController : ControllerBase
     {
-        private readonly PaqueteriapqContext _context;
-        public TbGuiaController(PaqueteriapqContext context)
+        private readonly IPAQUETERIAPQService _paqueteriapqService;
+        private readonly IJPGService _jpgService;
+        public TbGuiaController(IPAQUETERIAPQService paqueteriapqService, IJPGService jpgService)
         {
-            _context = context;
+            _paqueteriapqService = paqueteriapqService;
+            _jpgService = jpgService;
         }
-
-        // GET: api/<TbGuiaController>
-        [HttpGet]
-        public ActionResult Get()
+        [HttpPost]
+        public ActionResult Post([FromBody] RangoDeFechas rangoDeFechas)
         {
-            TbGuiaData guiaData = new TbGuiaData(_context);
-            List<TbGuia> guias = guiaData.getGuias();
-            return Ok(guias);
+            try
+            {
+                if (rangoDeFechas.start_date == null || rangoDeFechas.end_date == null)
+                {
+                    return BadRequest(new
+                    {
+                        error = "Debe proporcionar ambas fechas: start_date y end_date."
+                    });
+                }
+                
+                var guias = _paqueteriapqService.getGuias(rangoDeFechas);
+                return Ok(guias);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
-
-        //// GET api/<TbGuiaController>/5
-        //[HttpGet("{id}")]
-        //public string Get(int id)
-        //{
-        //    return "value";
-        //}
-
-        //// POST api/<TbGuiaController>
-        //[HttpPost]
-        //public void Post([FromBody] string value)
-        //{
-        //}
-
-        //// PUT api/<TbGuiaController>/5
-        //[HttpPut("{id}")]
-        //public void Put(int id, [FromBody] string value)
-        //{
-        //}
-
-        //// DELETE api/<TbGuiaController>/5
-        //[HttpDelete("{id}")]
-        //public void Delete(int id)
-        //{
-        //}
     }
 }
