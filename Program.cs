@@ -3,6 +3,7 @@ using PAQMEX_API;
 using PAQMEX_API.Models.ENTREGAS;
 using PAQMEX_API.Models.JPG;
 using PAQMEX_API.Models.PAQUETERIAPQ;
+using PAQMEX_API.Security;
 using PAQMEX_API.Services.JPG;
 using PAQMEX_API.Services.PAQUETERIAPQ;
 using System;
@@ -16,6 +17,9 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddScoped<IJPGService, JPGService>();
 builder.Services.AddScoped<IPAQUETERIAPQService, PAQUETERIAPQService>();
+builder.Services.AddScoped<IAuthUrreaService, AuthUrreaService>();
+builder.Services.AddAuthentication("BasicAuthentication")
+    .AddScheme<Microsoft.AspNetCore.Authentication.AuthenticationSchemeOptions, BasicAuthHandler>("BasicAuthentication", null);
 builder.Services.AddDbContext<PaqueteriapqContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("PAQUETERIAPQ"));
@@ -48,6 +52,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

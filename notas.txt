@@ -1,4 +1,15 @@
-// Scaffold-DbContext "server=[dnsalias],1433;user=[sa];password=[password];database=[DataBase]" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models\[DataBase] -UseDatabasenames
+Scaffold-DbContext "server=[dnsalias],1433;user=[sa];password=[password];database=[DataBase]" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models\[DataBase] -UseDatabasenames
 
-// Cve_Cliente
-// PwdInternet
+USE PAQUETERIAPQ
+GO
+CREATE USER test_api FOR LOGIN test_api
+GRANT SELECT ON dbo.tb_Guia TO test_api
+GRANT SELECT ON dbo.tb_GuiaTimbre TO test_api
+GRANT SELECT ON dbo.tb_Cliente TO test_api
+	-Cve_Cliente: 105803
+	-PwdInternet: PUHP1862&&
+
+USE JPG
+GO
+CREATE USER test_api FOR LOGIN test_api
+GRANT SELECT, INSERT ON dbo.registroConsultas TO test_api

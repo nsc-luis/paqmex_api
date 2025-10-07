@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using PAQMEX_API.Services.JPG;
 using PAQMEX_API.Services.PAQUETERIAPQ;
 using static PAQMEX_API.Services.PAQUETERIAPQ.IPAQUETERIAPQService;
@@ -20,6 +21,7 @@ namespace PAQMEX_API.Controllers.PAQUETERIAPQ
             _jpgService = jpgService;
         }
         [HttpPost]
+        [Authorize]
         public ActionResult Post([FromBody] RangoDeFechas rangoDeFechas)
         {
             try
@@ -33,7 +35,7 @@ namespace PAQMEX_API.Controllers.PAQUETERIAPQ
                 }
                 
                 var guias = _paqueteriapqService.getGuias(rangoDeFechas);
-                return Ok(guias);
+                return Ok(guias.Result);
             }
             catch (Exception ex)
             {
