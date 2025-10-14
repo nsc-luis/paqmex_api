@@ -8,8 +8,8 @@ using static PAQMEX_API.Services.PAQUETERIAPQ.IPAQUETERIAPQService;
 
 namespace PAQMEX_API.Controllers.PAQUETERIAPQ
 {
-    [Route("api/[controller]")]
-    //[Route("api/v1/guias/entregas/consulta")]
+    //[Route("api/[controller]")]
+    [Route("api/v1/guias/entregas/consulta")]
     [ApiController]
     public class TbGuiaController : ControllerBase
     {
