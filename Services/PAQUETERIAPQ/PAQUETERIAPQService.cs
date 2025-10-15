@@ -28,7 +28,7 @@ namespace PAQMEX_API.Services.PAQUETERIAPQ
             DateTime end_date = DateTime.Parse(end_date1);
 
             var query = (from g in _context.TbGuias
-                         join gt in _context.TbGuiaTimbres on g.NumGuia equals gt.NumGuia
+                         //join gt in _context.TbGuiaTimbres on g.NumGuia equals gt.NumGuia
                          where (g.Fechaentrega >= start_date && g.Fechaentrega <= end_date)
                          && g.CveClienteRem == 105803 //URREA
                          orderby g.Fechaentrega descending
@@ -36,20 +36,23 @@ namespace PAQMEX_API.Services.PAQUETERIAPQ
                          {
                              g.NumGuia,
                              g.NumFacCte,
-                             gt.Uuid,
+                             g.CodigoRastreo,
+                             //gt.Uuid,
                              g.Fechaentrega,
                              g.RecibeEnt
                          });
             guias = query.Select(g => new GuiasUrrea
             {
-                guia = g.NumGuia,
+                //guia = g.NumGuia,
+                guia = g.CodigoRastreo,
                 pedido = g.NumFacCte,
-                factura = g.Uuid,
+                //factura = g.Uuid,
+                factura = g.NumGuia,
                 fecha_entrega = g.Fechaentrega,
                 recibido_por = g.RecibeEnt
             }).ToList();
 
-            _jpgService.agregarRegistroConsulta("api/v1/guias/entregas/consulta", JsonConvert.SerializeObject(rangoDeFechas));
+            _jpgService.agregarRegistroConsulta("urrea/api/v1/guias/entregas/consulta", JsonConvert.SerializeObject(rangoDeFechas));
             return guias;
         }
     }
