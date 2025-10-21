@@ -4,6 +4,7 @@ using PAQMEX_API.Models.ENTREGAS;
 using PAQMEX_API.Models.JPG;
 using PAQMEX_API.Models.PAQUETERIAPQ;
 using PAQMEX_API.Security;
+using PAQMEX_API.Services.CFDv40;
 using PAQMEX_API.Services.JPG;
 using PAQMEX_API.Services.PAQUETERIAPQ;
 using System;
@@ -18,6 +19,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddScoped<IJPGService, JPGService>();
 builder.Services.AddScoped<IPAQUETERIAPQService, PAQUETERIAPQService>();
 builder.Services.AddScoped<IAuthUrreaService, AuthUrreaService>();
+builder.Services.AddScoped<ICFDv40Service, CFDv40Service>();
 builder.Services.AddAuthentication("BasicAuthentication")
     .AddScheme<Microsoft.AspNetCore.Authentication.AuthenticationSchemeOptions, BasicAuthHandler>("BasicAuthentication", null);
 builder.Services.AddDbContext<PaqueteriapqContext>(options =>
