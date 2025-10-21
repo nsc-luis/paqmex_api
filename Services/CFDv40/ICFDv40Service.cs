@@ -2,6 +2,6 @@
 {
     public interface ICFDv40Service
     {
-        public void GeneraCFDv40();
+        public void GeneraCFDv40(Comprobante comprobante);
     }
 }
